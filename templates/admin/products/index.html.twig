@@ -1,0 +1,35 @@
+{% extends "base.html.twig"%}
+
+{% block title %}Administration des produits{% endblock %}
+
+{% block body %}
+<h1>Administration des produits</h1>
+    <button type="button" class="btn btn-primary"><a class="text-white text-decoration-none" href="{{ path('admin_products_add') }}">Ajout d'un produit</a></button>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">name</th>
+            <th scope="col">description</th>
+            <th scope="col">price</th>
+            <th scope="col">modifier</th>
+            <th scope="col">suprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table">
+            {% for produits in product  %}
+        <tr>
+            <td>{{ produits.name }}</td>
+            <td>{{ produits.description }}</td>
+            <td>{{ produits.price }}</td>
+            <td><button type="button" class="btn btn-success"><a class="text-white text-decoration-none" href="{{ path('admin_products_edit', {id: produits.id}) }}">Modifier</a></button></td>
+            <td><button type="button" class="btn btn-danger"><a class="text-white text-decoration-none" href="{{ path('admin_products_delete', {id: produits.id}) }}">Suprimer</a></button></td>
+        </tr>
+        {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

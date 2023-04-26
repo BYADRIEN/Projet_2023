@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin des utili{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1>Liste des produits de la catégorie {{ category.name }}</h1>
+            </div>
+            {% for product in products.data  %}
+                <div class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ product.name }}</h2>
+                        <p class="card-text">{{ product.description }}</p>
+                        <a href="{{ path('products_details', {"slug" : product.slug}) }}">Voir les details</a>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+            {% set path = 'categories_list'  %}
+            {% set slug = category.slug  %}
+            {% set pages = products.page  %}
+            {% set currentPage = products.page  %}
+            {% include "partials/_pagination.html.twig" %}
+        </section>
+    </main>
+{% endblock %}

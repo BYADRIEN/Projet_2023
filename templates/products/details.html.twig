@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de {{ product.name }}{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1> Details de {{ product.name }}</h1>
+            </div>
+            <div class="col-6">
+          {% for image in product.images %}
+              <img src="{{ asset('assets/img/') ~ image.name }}" class="img-thumbnail" alt="">
+                {% endfor %}
+            </div>
+            <div class="col-6">
+                <p>{{ product.description }}</p>
+                <p>Catégorie : {{ product.categories.name }}</p>
+                <p>Prix : {{ product.price / 100 }} €</p>
+                {% if product.stock > 0 %}
+                <a href="">ajouter au panier</a>
+                    {% else %}
+                    <p>temporairement rupture de stock </p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+{% endblock %}
